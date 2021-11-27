@@ -24,8 +24,7 @@ public class CustomerService {
     }
 
     Customer getCustomer(Long id){
-      return     getCustomers().stream().filter(customer -> customer.getId().equals(id))
-                .findFirst()
+      return     customerRepository.findById(id)
        //         .orElseThrow(()-> new IllegalStateException("customer with id " + id +" not found")); //apears in the log but client does not know about it. In status of response there is 500 Server Error initially.
         //one way to pass message to the client in status response (in properties file: server.error.include-message=always
         //server.error.include-binding-errors=always server.error.include-stacktrace=always)
