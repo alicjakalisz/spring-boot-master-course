@@ -17,17 +17,17 @@ import javax.validation.constraints.NotBlank;
 public class Customer {
 
     @Id
-    private final Long id;
+    private Long id;
     @NotBlank // JSON passed by client needs to have id - you need to set this contraints here but activate it in controller level by annotation @Valid
-    private final String name;
+    private  String name;
     @NotBlank
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // we put JsonIgnore on password getter
     // so when get method is called by the client it does not pass passowrd into Json body. This annotation makes is possible for the client to use post with Json including password
-    private final String password;
+    private  String password;
 
     @NotBlank (message = "email must not be empty") // you can add message to pass back to client
     @Email //validates email format instead of custom validator you can put regex inside
-    private final String email;
+    private String email;
 
     public Customer(Long id, String name, String password, String email) {
         this.id = id;
@@ -36,6 +36,9 @@ public class Customer {
         this.email = email;
     }
 
+    //empty constructor has been added for JPA layer
+    public Customer() {
+    }
 
     // getters need to exist! so JACKSON library could serilized properties and map it to JSON when passing it in cotrnoller to the client
     //properties in JSON comes from getters (not from attributes direclty). All of the getters will be included in json.
