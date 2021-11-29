@@ -1,5 +1,6 @@
 package com.example.demo.customer;
 
+import com.example.demo.infoapp.InfoApp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -26,11 +27,13 @@ public class CustomerConfiguration {
     //we need to create bean for this class. This class has not been created by us. We use it so we need to make a bean of it (we cannot add @Component annotations
     //to original class as it is not ours
     @Bean
-    CommandLineRunner commandLineRunner(){
+    CommandLineRunner commandLineRunner(InfoApp infoApp){ //to map all the appliction properties re info app into class
         return args -> {
             System.out.println("Command line runner hooray");
             System.out.println(companyName);
             System.out.println(environment.getProperty("info.company.name"));
+            System.out.println(infoApp);
+            System.out.println(infoApp.getDescription());
         };
     }
 
