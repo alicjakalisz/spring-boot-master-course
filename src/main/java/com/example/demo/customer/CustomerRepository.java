@@ -11,7 +11,7 @@ public interface CustomerRepository extends JpaRepository<Customer,Long> {
 
 
 
-/*
+/* FIRST VERSION BEFORE USING JPA , CustomerRepository was a class and implemented Interface CustomerRepo with one method without body to be overriden:
     @Override
     public List<Customer> getCustomers() {
         //todo

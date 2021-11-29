@@ -15,7 +15,25 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>15</java.version>
+		<!--adding cloud property for installation of Open Feign-->
+		<spring.cloud-version>2020.0.0</spring.cloud-version>
 	</properties>
+
+	<!--
+	Installing Spring Cloud and Open Feign (Rest Client)
+
+	-->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring.cloud-version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -64,6 +82,26 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<!--
+	Open Feign (Rest Client) following installing Spring Cloud above
+
+	-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+
+		</dependency>
+
+		<!--
+		gives you endpoints for monitoring status of your application : localhost:8080/actuator/health or info
+		if you want to use info you need to set the app information in appplication.properties
+		-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+
 		</dependency>
 	</dependencies>
 
