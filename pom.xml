@@ -113,6 +113,12 @@
 			<optional>true</optional>
 
 		</dependency>
+
+		<!--for removing boiler plate code from models -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

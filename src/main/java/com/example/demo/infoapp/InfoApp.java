@@ -1,16 +1,20 @@
 package com.example.demo.infoapp;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 // way of taking application properties starting from info.app and bringing them into java class. Requires dependency in pom.xml -processor
 @Configuration
 @ConfigurationProperties(prefix = "info.app") // look at actuator settings in appplication.properties
+@Data
 public class InfoApp {
     private String name;
     private String description;
     private String version;
+// CLEANING WITH LOMBOK
 
+    /*
     public String getName() {
         return name;
     }
@@ -42,5 +46,5 @@ public class InfoApp {
                 ", description='" + description + '\'' +
                 ", version='" + version + '\'' +
                 '}';
-    }
+    } */
 }

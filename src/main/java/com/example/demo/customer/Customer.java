@@ -3,6 +3,10 @@ package com.example.demo.customer;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,6 +18,11 @@ import javax.validation.constraints.NotBlank;
 // JACKSON USES POJO with getter methods for serialisation to JSON file (happens with @RequestBody and @GetMapping in controller)
 @Entity
 @Table
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+//you dont put annotation for getters as they have custom annotations like @Json ignore and we dont want to overwrite it
 public class Customer {
 
     @Id
@@ -29,16 +38,12 @@ public class Customer {
     @Email //validates email format instead of custom validator you can put regex inside
     private String email;
 
-    public Customer(Long id, String name, String password, String email) {
-        this.id = id;
-        this.name = name;
-        this.password = password;
-        this.email = email;
-    }
 
-    //empty constructor has been added for JPA layer
-    public Customer() {
-    }
+
+
+
+    //empty constructor and all arg constructors have been deleted as replaced by lombok
+
 
     // getters need to exist! so JACKSON library could serilized properties and map it to JSON when passing it in cotrnoller to the client
     //properties in JSON comes from getters (not from attributes direclty). All of the getters will be included in json.
